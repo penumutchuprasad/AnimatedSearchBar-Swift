@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SearchView" customModule="AnimatedSearch" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="juL-1G-DEv">
+                    <rect key="frame" x="175" y="16" width="25" height="24"/>
+                    <state key="normal" image="searchIcon"/>
+                    <connections>
+                        <action selector="showButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="N8k-qg-DzN"/>
+                    </connections>
+                </button>
+                <searchBar contentMode="redraw" verticalCompressionResistancePriority="1000" searchBarStyle="minimal" placeholder="Search country..." showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZLi-be-glV">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="0.79596720950704225" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="je6-ef-P3S"/>
+                    </connections>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="dTU-Uu-KvV">
+                    <rect key="frame" x="0.0" y="56" width="375" height="1"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="tH0-Mp-CVL"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="TeZ-cZ-qo4"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ZLi-be-glV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="1nE-8K-hoe"/>
+                <constraint firstItem="juL-1G-DEv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="35O-Xc-fKv"/>
+                <constraint firstItem="dTU-Uu-KvV" firstAttribute="top" secondItem="ZLi-be-glV" secondAttribute="bottom" id="9Dy-uM-y8x"/>
+                <constraint firstItem="ZLi-be-glV" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="GaY-c1-67i"/>
+                <constraint firstItem="dTU-Uu-KvV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SfW-pd-Rdb"/>
+                <constraint firstItem="dTU-Uu-KvV" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="YUz-ax-U0J"/>
+                <constraint firstItem="juL-1G-DEv" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="qu9-si-uy0"/>
+                <constraint firstItem="ZLi-be-glV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="uxc-ck-uX9"/>
+                <constraint firstAttribute="trailing" secondItem="dTU-Uu-KvV" secondAttribute="trailing" id="vZ7-N5-U6u"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="resultsTableView" destination="dTU-Uu-KvV" id="y0E-Tx-9f8"/>
+                <outlet property="searchBar" destination="ZLi-be-glV" id="L3C-BO-4Je"/>
+                <outlet property="showButton" destination="juL-1G-DEv" id="VB0-du-Y2f"/>
+            </connections>
+            <point key="canvasLocation" x="-73.5" y="-79.5"/>
+        </view>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SearchViewCell" id="cgs-Wr-kfg">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cgs-Wr-kfg" id="dWM-45-0lT">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="-74" y="47"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="searchIcon" width="25" height="24"/>
+    </resources>
+</document>
