@@ -118,6 +118,7 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
                                                  for: indexPath as IndexPath)
         // move UI setup to tableview cell class
         cell.layer.cornerRadius = 4
+        cell.selectionStyle = .none
         
         cell.textLabel?.text = filteredArray[indexPath.row]
         cell.backgroundColor = UIColor.init(white: 1, alpha: 0.7)
