@@ -9,7 +9,7 @@
 import UIKit
 
 class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var showButton: UIButton!
@@ -17,19 +17,20 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
     var data: [String]!
     var filteredArray = [String]()
     var didSelect: ((String) -> Void)?
-
     
     let searchViewHeight: CGFloat = 60
     let tableViewCellHeight = 44
     let cellReuseId = "SearchViewCell"
     let maxNumberItemsInTableView = 5
     let buttonWidth = 60
+    let inset: CGFloat = 8
     
     var showSearchBar = false {
         didSet {
             let width = self.frame.size.width
             if showSearchBar {
                 self.showButton.isHidden = true
+                searchBar.isHidden = false
                 UIView.animate(withDuration: 0.8, animations: {
                     self.searchBar.frame = CGRect.init(x: 0,
                                                        y: self.searchBar.frame.origin.y,
@@ -45,6 +46,7 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
                                                        width: 0,
                                                        height: self.searchBar.frame.size.height)
                 }) { (finished) in
+                    self.searchBar.isHidden = true
                     self.showButton.isHidden = false
                 }
             }
@@ -62,9 +64,14 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
         self.backgroundColor = .clear
         self.searchBar.layer.cornerRadius = 4
         searchBar.becomeFirstResponder()
+        self.searchBar.isHidden = true
         configureTableView()
+        frame  = CGRect.init(x: inset,
+                             y: UIApplication.shared.statusBarFrame.size.height,
+                             width: UIScreen.main.bounds.size.width - inset * 2,
+                             height: self.searchViewHeight)
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
     }
@@ -87,7 +94,7 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
         }
         return nil
     }
-
+    
     // MARK: Configuring methods
     
     private func configureTableView() {
@@ -100,13 +107,13 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
         resultsTableView.dataSource = self
         resultsTableView.delegate = self
     }
-
+    
     // MARK: Actions
     
     @IBAction func showButtonAction(_ sender: UIButton) {
         self.showSearchBar = !self.showSearchBar
     }
-
+    
     // MARK: UITableview datasource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -165,7 +172,7 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
         searchBar.resignFirstResponder()
         self.filteredArray.removeAll()
         self.resultsTableView.reloadData()
-
+        
         UIView.animate(withDuration: 0.1, animations: {
             self.frame.size.height = self.searchViewHeight
         }) { (finished) in

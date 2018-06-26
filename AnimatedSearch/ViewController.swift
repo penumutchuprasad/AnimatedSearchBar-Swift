@@ -14,7 +14,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapKit: MKMapView!
     
     var dataArray = [String]()
-    let inset: CGFloat = 8
     var searchView: SearchView!
     
     override func viewDidLoad() {
@@ -30,10 +29,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
             print(choice)
         }
         view.addSubview(searchView)
-        searchView.frame  = CGRect.init(x: inset,
-                                        y: UIApplication.shared.statusBarFrame.size.height,
-                                        width: UIScreen.main.bounds.size.width - inset * 2,
-                                        height: searchView.searchViewHeight)
     } 
     
     override func didReceiveMemoryWarning() {
