@@ -22,7 +22,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         // load test data
         loadListOfCountries()
         
-        // setup test view
+        // setup search view
         searchView = SearchView.instanceFromNib()
         searchView.data = self.dataArray
         searchView.didSelect = { (choice) in
