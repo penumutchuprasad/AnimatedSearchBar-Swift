@@ -29,7 +29,7 @@
                         <constraints>
                             <constraint firstItem="gBr-MW-AZM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RiZ-0e-ym3"/>
                             <constraint firstItem="gBr-MW-AZM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ZDB-6Q-keG"/>
-                            <constraint firstItem="gBr-MW-AZM" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="nAJ-AZ-74t"/>
+                            <constraint firstItem="gBr-MW-AZM" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="nAJ-AZ-74t"/>
                             <constraint firstItem="gBr-MW-AZM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="wGC-Nr-sZi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

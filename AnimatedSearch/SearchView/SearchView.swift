@@ -25,13 +25,16 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
     let buttonWidth = 60
     let inset: CGFloat = 8
     
+    let animationDurationForTableView = 0.5
+    let animationDurationForSearchBar = 0.8
+    
     var showSearchBar = false {
         didSet {
             let width = self.frame.size.width
             if showSearchBar {
                 self.showButton.isHidden = true
                 searchBar.isHidden = false
-                UIView.animate(withDuration: 0.8, animations: {
+                UIView.animate(withDuration: animationDurationForSearchBar, animations: {
                     self.searchBar.frame = CGRect.init(x: 0,
                                                        y: self.searchBar.frame.origin.y,
                                                        width: width,
@@ -40,7 +43,7 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
                     self.searchBar.becomeFirstResponder()
                 }
             } else {
-                UIView.animate(withDuration: 0.8, animations: {
+                UIView.animate(withDuration: animationDurationForSearchBar, animations: {
                     self.searchBar.frame = CGRect.init(x: width / 2,
                                                        y: self.searchBar.frame.origin.y,
                                                        width: 0,
@@ -146,13 +149,19 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
             let countryText:NSString = country as NSString
             return (countryText.range(of: searchText, options: .caseInsensitive).location) != NSNotFound
         })
-        
+        // set height size depends on number of items in table view
         if filteredArray.count < maxNumberItemsInTableView {
-            self.frame.size.height = searchViewHeight + CGFloat(tableViewCellHeight) * CGFloat(filteredArray.count)
+            self.frame.size.height = self.searchViewHeight +
+                CGFloat(self.tableViewCellHeight) * CGFloat(self.filteredArray.count)
         } else {
-            self.frame.size.height = searchViewHeight + self.frame.size.width
+            self.frame.size.height = self.searchViewHeight + self.frame.size.width
         }
-        self.resultsTableView.reloadData()
+        UIView.transition(with: resultsTableView,
+                          duration: animationDurationForTableView,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                            self.resultsTableView.reloadData()
+        })
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -173,7 +182,7 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
         self.filteredArray.removeAll()
         self.resultsTableView.reloadData()
         
-        UIView.animate(withDuration: 0.1, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.frame.size.height = self.searchViewHeight
         }) { (finished) in
             DispatchQueue.main.async {
