@@ -18,4 +18,4 @@ view.addSubview(searchView)
 ```
 
 ## Author
-Oleksandr Shymanskyi
+Oleksandr Shymanskyi (shymanskyi.oleksandr@gmail.com)
