@@ -5,7 +5,7 @@ Animated iOS native UISearchBar with simple example. All code is written with Sw
 AnimatedSearchBar will offer you suggestions when you priny something there. Its height changes depends on number of items.
 
 ## DEMO
-(https://github.com/Shymanskyi/AnimatedSearchBarSwift/blob/master/Gifs/AnimatedSearch.gif)
+![](https://github.com/Shymanskyi/AnimatedSearchBarSwift/blob/master/Gifs/AnimatedSearch.gif)
 
 ## USAGE
 ```Swift
