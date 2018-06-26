@@ -24,7 +24,7 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
     let maxNumberItemsInTableView = 5
     let buttonWidth = 60
     let inset: CGFloat = 8
-    
+    let siblingsCornerRadius: CGFloat = 4
     let animationDurationForTableView = 0.5
     let animationDurationForSearchBar = 0.6
     
@@ -102,7 +102,7 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
     
     // MARK: Configuring methods
     private func configureSearchBar() {
-        searchBar.layer.cornerRadius = 4
+        searchBar.layer.cornerRadius = siblingsCornerRadius
         searchBar.becomeFirstResponder()
         showSearchBar = false
         searchBar.isHidden = true
@@ -135,7 +135,7 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseId,
                                                  for: indexPath as IndexPath)
         // move UI setup to tableview cell class
-        cell.layer.cornerRadius = 4
+        cell.layer.cornerRadius = siblingsCornerRadius
         cell.selectionStyle = .none
         
         cell.textLabel?.text = filteredArray[indexPath.row]
@@ -185,16 +185,17 @@ class SearchView: UIView, UITableViewDelegate, UITableViewDataSource, UISearchBa
     // hide search view
     
     func collapseSearhView() {
-        
-        searchBar.resignFirstResponder()
-        filteredArray.removeAll()
-        resultsTableView.reloadData()
-        
-        UIView.animate(withDuration: 0.3, animations: {
-            self.frame.size.height = self.searchViewHeight
-        }) { (finished) in
-            DispatchQueue.main.async {
-                self.showSearchBar = false
+        if showSearchBar {
+            searchBar.resignFirstResponder()
+            filteredArray.removeAll()
+            resultsTableView.reloadData()
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.frame.size.height = self.searchViewHeight
+            }) { (finished) in
+                DispatchQueue.main.async {
+                    self.showSearchBar = false
+                }
             }
         }
     }
